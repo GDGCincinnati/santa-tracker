@@ -101,3 +101,10 @@ class MainActivity : AppCompatActivity() {
 
     private fun <T> DataSnapshot.getNonNullValue(type: Class<T>): T = getValue(type) ?: throw IllegalStateException()
 }
+
+@Composable
+fun SantaLocationCard() {
+    Text("Santa Location")
+    Text("Latitude: ")
+    Text("Longitude: ")
+}
