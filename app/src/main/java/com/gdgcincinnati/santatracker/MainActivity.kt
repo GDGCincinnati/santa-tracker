@@ -4,6 +4,7 @@ import android.media.SoundPool
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.Composable
+import androidx.compose.FrameLayout
 import androidx.compose.Model
 import androidx.compose.unaryPlus
 import androidx.ui.core.Text
@@ -27,6 +28,7 @@ import com.google.firebase.database.*
 class MainActivity : AppCompatActivity() {
     private var map: GoogleMap? = null
     private var marker: Marker? = null
+    private var santaLocation = SantaLocation(LatLng(0.0, 0.0))
 
     private var locationRef: DatabaseReference? = null
     private val locationListener: ValueEventListener by lazy {
@@ -52,6 +54,10 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        findViewById<FrameLayout>(R.id.frameLayout).setContent {
+            SantaLocationCard(santaLocation)
+        }
 
         val mapFragment = supportFragmentManager.findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync { googleMap ->
@@ -81,6 +87,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun updateMapAndMarker(position: LatLng) {
+        santaLocation.latLng = position
         map?.let { map ->
             map.animateCamera(CameraUpdateFactory.newLatLngZoom(position, 9f))
 
