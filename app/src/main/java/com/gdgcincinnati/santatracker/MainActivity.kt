@@ -4,6 +4,7 @@ import android.media.SoundPool
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.Composable
+import androidx.compose.Model
 import androidx.ui.core.Text
 import androidx.ui.core.setContent
 import androidx.ui.material.MaterialTheme
@@ -102,9 +103,12 @@ class MainActivity : AppCompatActivity() {
     private fun <T> DataSnapshot.getNonNullValue(type: Class<T>): T = getValue(type) ?: throw IllegalStateException()
 }
 
+@Model
+data class SantaLocation(var latLng: LatLng)
+
 @Composable
-fun SantaLocationCard() {
+fun SantaLocationCard(santaLocation: SantaLocation) {
     Text("Santa Location")
-    Text("Latitude: ")
-    Text("Longitude: ")
+    Text("Latitude: ${santaLocation.latLng.latitude}")
+    Text("Longitude: ${santaLocation.latLng.longitude}")
 }
