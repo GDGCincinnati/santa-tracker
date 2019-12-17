@@ -112,3 +112,9 @@ fun SantaLocationCard(santaLocation: SantaLocation) {
     Text("Latitude: ${santaLocation.latLng.latitude}")
     Text("Longitude: ${santaLocation.latLng.longitude}")
 }
+
+@Preview
+@Composable
+fun DefaultPreview() {
+    SantaLocationCard(SantaLocation(LatLng(39.10, -84.51)))
+}
