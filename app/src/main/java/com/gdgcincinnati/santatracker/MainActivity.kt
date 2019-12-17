@@ -6,9 +6,13 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.Composable
 import androidx.compose.Model
 import androidx.ui.core.Text
+import androidx.ui.core.dp
 import androidx.ui.core.setContent
+import androidx.ui.foundation.shape.corner.RoundedCornerShape
 import androidx.ui.layout.Column
+import androidx.ui.layout.Padding
 import androidx.ui.material.MaterialTheme
+import androidx.ui.material.surface.Card
 import androidx.ui.tooling.preview.Preview
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
@@ -109,10 +113,14 @@ data class SantaLocation(var latLng: LatLng)
 
 @Composable
 fun SantaLocationCard(santaLocation: SantaLocation) {
-    Column {
-        Text("Santa Location")
-        Text("Latitude: ${santaLocation.latLng.latitude}")
-        Text("Longitude: ${santaLocation.latLng.longitude}")
+    Card(shape = RoundedCornerShape(8.dp)) {
+        Padding(padding = 8.dp) {
+            Column {
+                Text("Santa Location")
+                Text("Latitude: ${santaLocation.latLng.latitude}")
+                Text("Longitude: ${santaLocation.latLng.longitude}")
+            }
+        }
     }
 }
 
