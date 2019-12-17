@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.Composable
 import androidx.compose.Model
+import androidx.compose.unaryPlus
 import androidx.ui.core.Text
 import androidx.ui.core.dp
 import androidx.ui.core.setContent
@@ -113,12 +114,14 @@ data class SantaLocation(var latLng: LatLng)
 
 @Composable
 fun SantaLocationCard(santaLocation: SantaLocation) {
+    val typography = +MaterialTheme.typography()
+
     Card(shape = RoundedCornerShape(8.dp)) {
         Padding(padding = 8.dp) {
             Column {
-                Text("Santa Location")
-                Text("Latitude: ${santaLocation.latLng.latitude}")
-                Text("Longitude: ${santaLocation.latLng.longitude}")
+                Text("Santa Location", style = typography.h4)
+                Text("Latitude: ${santaLocation.latLng.latitude}", style = typography.body1)
+                Text("Longitude: ${santaLocation.latLng.longitude}", style = typography.body1)
             }
         }
     }
